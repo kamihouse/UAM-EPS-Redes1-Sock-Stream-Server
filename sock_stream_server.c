@@ -11,12 +11,12 @@
 
 #define MAX_CONNECTION 5
 
-int sockfd;
-int PUERTO;
-char DIRECTORIO[128];
-char PAGINA[128];
-char USUARIO[128];
-char PASS[128];
+int     sockfd;
+int     PUERTO;
+char    DIRECTORIO[128];
+char    PAGINA[128];
+char    USUARIO[128];
+char    PASS[128];
 
 void error(const char *msg){
     perror(msg);
@@ -32,7 +32,7 @@ char * comparar(char extension[265]){
 
 	p = popen(comando,"r");
 	if(p==NULL){
-		error("ERROR POPEN");
+		error("\n#ERROR: POPEN");
 	}
 	fscanf(p,"%s",tipo_mime);
 	printf("VALOR DE RETORNO %s",tipo_mime);
@@ -62,9 +62,9 @@ void process_request(int newsockfd){
 	strcpy(cono,DIRECTORIO);
 	printf("RECURSO: %s METODO: %s VERSION: %s\n",recurso, metodo, version);	
 	if (n < 0){
-		error("ERROR reading from socket");
+		error("\n#ERROR: reading from socket");
     }
-	printf("Here is the message: %s\n",buffer);
+	printf("\n->Here is the message: %s\n",buffer);
 
 	//devolvemos la respuesta
 	//n = write(newsockfd,"I got your message\n",19);

@@ -7,8 +7,9 @@
 #include <sys/stat.h>
 #include <netinet/in.h>
 #include <signal.h>
-void error(const char *msg)
-{
+
+// Problema com nombre
+void error1(const char *msg){
     perror(msg);
     exit(1);
 }
@@ -21,7 +22,7 @@ char PAGINA[128],USUARIO[128],PASS[128],cono[256],buffer2[512],*envio;
 FILE *f,*g;
 	f=fopen(".config","r");
 	if (f==NULL){
-		//error("Archivo .config no encontrado\n");
+		//error1("Archivo .config no encontrado\n");
 	}
 	
 		fscanf(f,"%d\r\n",&PUERTO);
@@ -43,13 +44,13 @@ if (strcmp(USUARIO,user)==0&&strcmp(PASS,pass)==0){
 	sprintf(buffer2,"HTTP/1.1 200 OK\r\nContent-type: %s\r\nContent-length: %d\r\n\r\n",extension,(int)longitud.st_size);
 	n=write(newsockfd,buffer2,strlen(buffer2));
 	if (n < 0) 
-		//error("ERROR writing from socket\n");
+		//error1("ERROR writing from socket\n");
 	envio = (char*)malloc ( longitud.st_size );
 	i=fread(envio,longitud.st_size,1,g);//Abre el archivo g de tamaño longitud.st_size de caracter en caracter(1) y lo guarda en envio
 	
 	n=write(newsockfd,envio,(int)longitud.st_size);
 	if (n < 0) 
-		//error("ERROR writing from socket\n");
+		//error1("ERROR writing from socket\n");
 */}
 else{
 	printf("\n\nLOGIN INCORRECTO\n\n");
@@ -59,13 +60,13 @@ else{
 	sprintf(buffer2,"HTTP/1.1 200 OK\r\nContent-type: text/html\r\nContent-length: %d\r\n\r\n",(int)longitud.st_size);
 	n=write(newsockfd,buffer2,strlen(buffer2));
 	if (n < 0) 
-		error("ERROR writing from socket\n");
+		error1("ERROR writing from socket\n");
 	envio = (char*)malloc ( longitud.st_size );
 	i=fread(envio,longitud.st_size,1,g);//Abre el archivo g de tamaño longitud.st_size de caracter en caracter(1) y lo guarda en envio
 	
 	n=write(newsockfd,envio,(int)longitud.st_size);
 	if (n < 0) 
-		//error("ERROR writing from socket\n");
+		//error1("ERROR writing from socket\n");
 	free(envio);
 }
 	
