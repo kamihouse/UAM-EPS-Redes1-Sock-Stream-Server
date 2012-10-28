@@ -64,7 +64,7 @@ void process_request(int newsockfd){
 	if (n < 0){
 		error("\n#ERROR: reading from socket");
     }
-	printf("\n->Here is the message: %s\n",buffer);
+	printf("\n-> Here is the message: %s\n",buffer);
 
 	//devolvemos la respuesta
 	//n = write(newsockfd,"I got your message\n",19);
@@ -87,7 +87,7 @@ void process_request(int newsockfd){
 	u=strcmp("GET",metodo);
 	if (u==0){
 	printf("\n\t--> Metodo GET:\n");
-		if (strcmp("HTTP/1.1",version)==0 ||strcmp("HTTP/1.0",version) == 0){
+		if (strcmp("HTTP/1.1",version)==0 || strcmp("HTTP/1.0",version) == 0){
             printf("\n\t---> Version HTTP correcta\n");
             if (strcmp(recurso,"/")==0){
                 strcat(cono,PAGINA);
@@ -131,7 +131,7 @@ void process_request(int newsockfd){
                 n=write(newsockfd,buffer,i);
                 if (n < 0) 
                     error("\n#ERROR: writing from socket");
-                fclose(g);				//
+                fclose(g);
             }
             else {
                 strcat(cono,recurso);
@@ -165,7 +165,7 @@ void process_request(int newsockfd){
                         error("\n#ERROR: writing from socket\n");
                     }
                     envio = (char*)malloc ( longitud.st_size );
-                    i=fread(envio,longitud.st_size,1,g);//Abre el archivo g de tamaño longitud.st_size de caracter en caracter(1) y lo guarda en envio
+                    i=fread(envio,longitud.st_size,1,g); //Abre el archivo g de tamaño longitud.st_size de caracter en caracter(1) y lo guarda en envio
                     n=write(newsockfd,envio,(int)longitud.st_size);
                     if (n < 0){
                         error("\n#ERROR: writing from socket\n");
@@ -176,22 +176,22 @@ void process_request(int newsockfd){
             }
 		}	
 	}
-    // Se eres un POST
+    // Se POST
 	else{
-		u=strcmp("POST",metodo);
+		u=strcmp("POST", metodo);
 
 		if (u==0){
 		printf("\n\t--> Metodo POST:\n");
-			if(strcmp("HTTP/1.1",version)==0 ||strcmp("HTTP/1.0",version) == 0){
+			if(strcmp("HTTP/1.1",version)==0 || strcmp("HTTP/1.0",version) == 0){
 				printf("\n\t---> Version HTTP correcta\n");
                 
                 strcpy(buffer2,buffer);
                 tmp=strtok(buffer2,"\r\n");
-                while((tmp=strtok(NULL,"\r\n"))!=NULL){	
+                while((tmp=strtok(NULL,"\r\n")) != NULL){	
                     if (strncmp(tmp,"Content-Length: ",strlen("Content-Length: "))==0){
                         sscanf(tmp,"Content-Length: %d\r\n",&num_bytes);
                     }
-                    if ((strncmp(tmp,"username=",strlen("username="))) == 0){
+                    if ((strncmp(tmp,"username=", strlen("username="))) == 0){
                         tmp=strpbrk(tmp,"=");
                         tmp++;//Sumo uno a la posicion de memoria para saltar al siguiente caracter
                         strcpy(user,strtok(tmp,"&"));							
@@ -239,7 +239,7 @@ int main(int argc, char *argv[]){
 		
 	int portno;
 	
-	struct sockaddr_in serv_addr,cli_addr;
+	struct sockaddr_in serv_addr, cli_addr;
 	int n, newsockfd;
     
     // Datos del fichero de configuracion
