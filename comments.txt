@@ -1,7 +1,17 @@
+Lo seguiente:
+MacBook-Thiago:Sock Stream Server thiago$ make
+compilando objeto 'sock_stream_server.c'...sock_stream_server.c:21: error: redefinition of ‘error’
+config.cgi:11: error: previous definition of ‘error’ was here
+make: *** [sock_stream_server.o] Error 1
+
+Thiago
+--
+
 Isaac, después de cambiar el nombre de la función error() en el archivo config.cgi
 MacBook-Thiago:Sock Stream Server thiago$ make
 compilando objeto 'sock_stream_server.c'...[OK]
 compilando ejecutable 'sock_stream_server'...[OK]
 
+Thiago
 --
 
