@@ -25,10 +25,10 @@ EXEC_SOURCES = $(shell grep -l "^int main" $(SOURCES) | xargs)
 EXECS = $(shell echo $(EXEC_SOURCES) | sed -e 's:\.c[p]*::g')
 DEPS = $(shell echo $(SOURCES) | sed -e 's:\.c[p]*:\.d:g')
 
-all:	sock_stream_server
+all:	server
 
 # las dependencias (CAMBIA PARA CADA PRACTICA)
-sock_stream_server:	sock_stream_server.o
+server:	server.o
 
 # receta para hacer un .d (dependencias automaticas de tipo .h para tus .o)
 %.d : %.c
