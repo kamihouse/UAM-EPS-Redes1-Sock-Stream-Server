@@ -20,9 +20,9 @@ struct stat longitud;
 int PUERTO,n,i;
 char PAGINA[128],USUARIO[128],PASS[128],cono[256],buffer2[512],*envio;
 FILE *f,*g;
-	f=fopen(".config","r");
+	f=fopen("config.config","r");
 	if (f==NULL){
-		//error1("Archivo .config no encontrado\n");
+		//error1("Archivo config.config no encontrado\n");
 	}
 	
 		fscanf(f,"%d\r\n",&PUERTO);
